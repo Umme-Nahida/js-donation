@@ -36,7 +36,7 @@ function createAccordion() {
       "cursor-pointer",
       "font-medium",
       "text-gray-700",
-      "hover:bg-gray-300",
+      "hover:bg-gray-200",
       "transition"
     );
     header.textContent = item.question;
