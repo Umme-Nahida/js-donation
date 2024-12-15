@@ -23,7 +23,7 @@ donationButton.addEventListener("click", () => {
   
   historyButton.addEventListener("click", () => {
     // Add active state to history button
-    historyButton.classList.add("bg-green-500");
+    historyButton.classList.add("bg-green-500","hover:bg-green-400");
     historyButton.classList.remove("bg-gray-500");
   
     // Remove active state from donation button
@@ -45,6 +45,8 @@ function handleDonation(button) {
    // Get the specific input and total donation elements for this article
    const donationInput = article.querySelector(".donation-input");
    const donateTotalEl = article.querySelector(".donate-total");
+   const donationName = article.querySelector(".donation-name");
+   console.log("donateName",donationName)
  
    // Get the donation amount from the input field
    const donationAmount = parseFloat(donationInput.value);
@@ -74,15 +76,20 @@ function handleDonation(button) {
    // Clear the input field
    donationInput.value = " ";
 
+   const currentDate = new Date()
+   const date = currentDate.toLocaleDateString()
+   const time = currentDate.toLocaleTimeString()
 
    const childDiv = document.createElement("div")
    childDiv.innerHTML=`
     <div class=" p-5 bg-slate-200 mt-10 ">
-        <h2><span>0</span>Taka is Donated for famine-2024 at Feni, Bangladesh</h2>
-        <p>time</p>
+        <h2 class="text-xl"><span>${donateTotalEl.innerText} </span> Taka is Donated for ${donationName.innerText}</h2>
+        <p class="text-sm text-gray-600">Time: <span class="font-medium"> ${time} </p>
+        <p class="text-sm text-gray-600">Date: <span class="font-medium">Date: ${date} </p>
       </div>
    `
       
+   historySection.appendChild(childDiv)
 }
 
 // Attach event listeners to all donation buttons
