@@ -5,6 +5,12 @@ const donationSection = document.getElementById("donation-section");
 const historySection = document.getElementById("history-section");
 const historyList = document.getElementById("history-list");
 
+// Get modal elements
+const openModal = document.getElementById("openModal");
+const closeModal = document.getElementById("closeModal");
+const modal = document.getElementById("modal");
+const confirmButton = document.getElementById("confirmButton");
+
 
 // added donetion container 
 donationButton.addEventListener("click", () => {
@@ -70,8 +76,9 @@ function handleDonation(button) {
    const newBalance = parseFloat(accountBalanceEl.innerText) - donationAmount;
    accountBalanceEl.innerText = newBalance;
   
-   // Alert success message
-   alert("Donation successful!");
+
+   // Alert success message with modal 
+   modal.classList.remove("hidden");
  
    // Clear the input field
    donationInput.value = " ";
@@ -85,12 +92,21 @@ function handleDonation(button) {
     <div class=" p-5 bg-slate-200 mt-10 ">
         <h2 class="text-xl"><span>${donateTotalEl.innerText} </span> Taka is Donated for ${donationName.innerText}</h2>
         <p class="text-sm text-gray-600">Time: <span class="font-medium"> ${time} </p>
-        <p class="text-sm text-gray-600">Date: <span class="font-medium">Date: ${date} </p>
+        <p class="text-sm text-gray-600">Date: <span class="font-medium">${date} </p>
       </div>
    `
       
    historySection.appendChild(childDiv)
 }
+
+// Hide modal when 'Close' button is clicked
+closeModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
+// Hide modal when 'confirmButton' button is clicked
+confirmButton.addEventListener("click", () => {
+    modal.classList.add("hidden");
+  });
 
 // Attach event listeners to all donation buttons
 const donateButtons = document.querySelectorAll(".donet-button");
